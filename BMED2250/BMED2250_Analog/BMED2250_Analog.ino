@@ -19,8 +19,24 @@ void setup() {
 // the loop routine runs over and over again forever:
 void loop() {
   // read the input on analog pin 0:
-  int sensorValue = analogRead(A0);
+  //int sensorValue = analogRead(A0);
   // print out the value you read:
-  Serial.println(sensorValue);
-  delay(1);  // delay in between reads for stability
+  //Serial.println(sensorValue);
+  //delay(1);  // delay in between reads for stability
+
+  int i = 0;
+  int sensorValue = -1;
+  int analogArray[120];
+  int averageTotal;
+  for(int i = 0; i < 120; i++) {
+    sensorValue = analogRead(A0);
+    analogArray[i] = sensorValue;
+    delay(1000);
+    Serial.println(sensorValue);
+    averageTotal += sensorValue;
+  }
+  int averageAfter = averageTotal / 120;
+  Serial.println("The average for the last 2 minutes was: " + averageAfter);
+  
 }
+
